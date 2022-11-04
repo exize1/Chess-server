@@ -26,7 +26,8 @@ const server = http.createServer(app)
 const io = new Server(server, {
     cors:{
         origin: process.env.CLIENT_SIDE,
-        methods:["GET", "POST", "PUT"]
+        methods:["GET", "POST", "PUT"],
+        credentials: true
     },
 })
 
