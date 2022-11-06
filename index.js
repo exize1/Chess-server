@@ -27,7 +27,9 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 app.use('/api', routes)
 
 const server = http.createServer(app)
-
+server.listen(port, () => {
+    console.log(`server connected on ${port}`);
+})
 const io = new Server(server, {
     cors:{
         origin: process.env.CLIENT_SIDE,
@@ -61,6 +63,3 @@ io.on("connection", (socket) => {
     })
 })
 
-server.listen(port, () => {
-    console.log(`server connected on ${port}`);
-})
