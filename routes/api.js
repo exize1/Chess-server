@@ -11,6 +11,11 @@ router.get('/position/:room', (req, res, next) => {
     .then((data) => res.json(data))
     .catch(next)
 })
+router.get('/all/', (req, res, next) => {
+  Game.find({})
+    .then((data) => res.json(data))
+    .catch(next)
+})
 
 router.post('/position/', ( req, res, next) => {
   Game.find({})
