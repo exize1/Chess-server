@@ -32,7 +32,7 @@ server.listen(port, () => {
 })
 const io = new Server(server, {
     cors:{
-        origin: process.env.CLIENT_SIDE,
+        origin: "https://chesscom.netlify.app",
         methods:["GET", "POST", "PUT"],
     },
 })
