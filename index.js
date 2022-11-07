@@ -25,33 +25,33 @@ app.use('/api', routes)
 
 const server = http.createServer(app)
 
-// const io = new Server(server, {
-//     cors:{
-//         origin: process.env.CLIENT_SIDE,
-//         methods:["GET", "POST", "PUT"],
-//     },
-// })
+const io = new Server(server, {
+    cors:{
+        origin: process.env.CLIENT_SIDE,
+        methods:["GET", "POST", "PUT"],
+    },
+})
 
-// io.on("connection", (socket) => {
-//     console.log(`User connected ${socket.id}`);
+io.on("connection", (socket) => {
+    console.log(`User connected ${socket.id}`);
 
-//     socket.on("creat_room", (data) => {
-//         console.log("data");
-//         socket.join(data)
-//         console.log(`User ${socket.id} room: ${data} created`);
-//     })
+    socket.on("creat_room", (data) => {
+        console.log("data");
+        socket.join(data)
+        console.log(`User ${socket.id} room: ${data} created`);
+    })
     
 
-//     socket.on("make_the_move", (data) => {
-//         socket.broadcast.emit("cach_the_move", data)
-//     })
+    socket.on("make_the_move", (data) => {
+        socket.broadcast.emit("cach_the_move", data)
+    })
 
     
 
-//     socket.on('disconnect', () => {
-//         console.log('USER DISCONNECTED');
-//     })
-// })
+    socket.on('disconnect', () => {
+        console.log('USER DISCONNECTED');
+    })
+})
 
 server.listen(port, () => {
     console.log(`server connected on ${port}`);
